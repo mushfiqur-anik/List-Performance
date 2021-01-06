@@ -4,7 +4,7 @@ public class MyArrayList<E> implements List<E>{
 	
 	private Object[] arrayObj; 	// Create an array 
 	private int length;         // Length of the array
-	private int pointer;        // Points to the next available slot to add element
+	private int pointer;        // Points to the last element on list
 	
 	// Default Constructor
 	public MyArrayList() {
@@ -23,7 +23,7 @@ public class MyArrayList<E> implements List<E>{
 	// Getter & Setters for variables ... 
 	
 	public Boolean add(E e) {
-		arrayObj[this.pointer] = e;
+		arrayObj[this.pointer+1] = e;
 		return true;
 	}   
 	
@@ -31,40 +31,40 @@ public class MyArrayList<E> implements List<E>{
 		arrayObj[index] = element;
 	}
 	
+	// FIX THIS!!!
 	public void clear() {
 		for(int i = 0; i < pointer; i++) {
 			arrayObj[i] = null;
 		}
 	}      
 	
+	// Remove element at the index
 	public E remove(int index) {
 		E removedElement = (E) arrayObj[index];
+		int counter = 0;
+		Object[] temp = new Object[10];
 		
-		// Check if out of index
-		if(index >= 0 && index < pointer) {
+		for(int i = 0; i < 10; i++) { 
+			if(i == index) { } // Skip ...
 			
-			
-			
-		}
+			else {
+				temp[counter] = arrayObj[i];
+				counter++;
+			}
+		}	
 		
-		else { 
-			System.out.println("Index not found in the list");
-		}
-		
-		
-		
-		
-		// Shift the array
-		
-		
+		arrayObj = temp;
 		
 		return removedElement;
 	}     
 	
+	public Boolean remove(Object o) {
+		return true;
+	}      
 	
-	// Removes the element at the specified position of the list
-	public Boolean remove(Object o) { }       // Removes the first occurrence of the specified element from the list
-	public String toString() { }               // Returns a string representation of the list
-	public int size() { }                      // Returns the number of elements in the list
+	
+	// Removes the first occurrence of the specified element from the list
+	//public String toString() { }               // Returns a string representation of the list
+	//public int size() { }                      // Returns the number of elements in the list
 
 }
